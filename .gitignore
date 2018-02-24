@@ -5,3 +5,4 @@ coffee-house-client/build
 coffee-house-server/__pycache__/
 coffee-house-server/*.pyc
 coffee-house-server/venv/
+coffee-house-server/.idea
