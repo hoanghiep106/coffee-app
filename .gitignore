@@ -1,0 +1,7 @@
+coffee-house-client/node_modules
+coffee-house-client/yarn.lock
+coffee-house-client/build
+**/.DS_Store
+coffee-house-server/__pycache__/
+coffee-house-server/*.pyc
+coffee-house-server/venv/
