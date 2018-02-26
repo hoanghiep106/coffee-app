@@ -1,0 +1,84 @@
+.main {
+  color: #333;
+}
+
+.main .title {
+  text-align: center;
+  margin-bottom: 50px;
+  padding-top: 50px;
+}
+
+.main .title h3 {
+  margin-bottom: 0;
+  margin-top: 0;
+  font-weight: normal;
+}
+
+.main .title h2 {
+  margin-top: 10px;
+}
+
+.main .title p {
+  font-weight: 600;
+}
+
+#login-href {
+  cursor: pointer;
+}
+
+.cam {
+  color: #FF792C;
+}
+
+.content-left, .content-right {
+  width: 50%;
+  float: left;
+}
+
+.content-left {
+  text-align: right;
+}
+
+.content-right {
+  text-align: left;
+}
+
+.content-left img.tch {
+  max-width: 100%;
+  border: 4px solid #fff;
+  border-radius: 5px;
+}
+
+.content-right ul {
+  margin-top: 0;
+  margin-bottom: 10px;
+  padding-left: 30px;
+}
+
+.content-right ul li.first {
+  font-size: 15px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.content-right ul li {
+  padding: 5px 0;
+}
+
+.content-right ul li span.icon {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 20px;
+  margin-right: 5px;
+  border: 1px solid #fff;
+  font-size: 13px;
+}
+
+.content-right .notes {
+  font-style: italic;
+  font-size: 13px;
+  padding-left: 30px;
+}
