@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 
-import Landing from './pages/Landing';
+import Landing from './components/Landing';
+import CustomerInfo from './components/CustomerInfo';
 
 import './index.css';
 import registerServiceWorker from './registerServiceWorker';
@@ -9,7 +10,7 @@ import registerServiceWorker from './registerServiceWorker';
 class App extends Component {
   render() {
     return (
-      <Landing />
+      <CustomerInfo />
     );
   }
 }
