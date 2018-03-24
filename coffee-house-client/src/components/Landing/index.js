@@ -1,5 +1,4 @@
 import React from 'react';
-import './index.css';
 
 const Landing = props => (
   <div class="main clarfix">
