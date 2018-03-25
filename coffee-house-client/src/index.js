@@ -5,6 +5,8 @@ import 'font-awesome/css/font-awesome.min.css';
 import Landing from './components/Landing';
 import CustomerInfo from './components/CustomerInfo';
 import CustomerLocation from './components/CustomerLocation';
+import Menu from './components/Menu';
+import Cart from './components/Cart';
 
 import './index.css';
 import registerServiceWorker from './registerServiceWorker';
@@ -17,7 +19,7 @@ class App extends Component {
             <div className="flip-wizard">
               <div className="flip-panel step-panel">
                 <div className="flip-card">
-                <CustomerInfo />
+                <Cart />
                 </div>
               </div>
               <div className="controls">

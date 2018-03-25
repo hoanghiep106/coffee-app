@@ -1,34 +1,31 @@
 import React from 'react';
 
 const Landing = props => (
-  <div class="main clarfix">
-    <div class="title">
-      <h3>ĐẶT HÀNG VÀ GIAO TẬN NƠI TẠI</h3>
-      <h2>THE COFFEE HOUSE DELIVERY</h2>
-      <p>Đừng quên
-        <span class="cam" id="login-href"> Đăng nhập </span> vào tài khoản
-        <span class="cam"> The Coffee House Rewards</span> của bạn để tích điểm và nhận các ưu đãi nhé!</p>
-    </div>
-    <div class="content">
-      <div class="content-left">
-        <img class="tch" src="/assets/img/tch.jpg" alt="Giao hang tan noi" />
+  <div className="intro-step">
+   <div className="install-app"><img src="assets/img/appicon.png"/>The Coffee House Mobile<a className="btn-install">Cài đặt ngay</a></div>
+   <div className="content">
+      <div className="head">
+         <h3>ĐẶT HÀNG VÀ GIAO TẬN NƠI TẠI</h3>
+         <h2>THE COFFEE HOUSE DELIVERY</h2>
+         <p>Đừng quên<em> Đăng nhập </em>vào tài khoản<em> The Coffee House Rewards </em>của bạn để tích điểm và nhận các ưu đãi nhé!</p>
       </div>
-      <div class="content-right">
-        <ul style={{listStyleType: 'none'}}>
-          <li class="first">Các bước đặt món</li>
-          <li>
-            <span class="icon">1</span> Điền thông tin nhận hàng (tên, số điện thoại, địa chỉ nhận hàng)</li>
-          <li>
-            <span class="icon">2</span> Chọn món yêu thích</li>
-          <li>
-            <span class="icon">3</span> Tối đa 30 phút
-            <span class="cam">(*)</span> bạn sẽ có ngay món uống yêu thích!</li>
-        </ul>
-        <div class="notes cam">(*) Thời gian có thể khác nhau tùy thuộc vào vị trí và giao thông tại thời điểm đặt hàng</div>
-        <div class="notes cam">Thời gian phục vụ : 7h-20h</div>
+      <div className="body">
+         <img src="assets/img/tch.jpg"/>>
+         <div className="order-steps">
+            <h3>Các bước đặt món</h3>
+            <ol>
+               <li>Điền thông tin nhận hàng (tên, số điện thoại, địa chỉ nhận hàng)</li>
+               <li>Chọn món yêu thích</li>
+               <li>Tối đa 30 phút <span className="legend"> (*) </span>bạn sẽ có ngay món uống yêu thích!</li>
+            </ol>
+         </div>
+         <div className="notes">
+            <p>(*) Thời gian có thể khác nhau tùy thuộc vào vị trí và giao thông tại thời điểm đặt hàng</p>
+            <p>Thời gian phục vụ : 7h-20h</p>
+         </div>
       </div>
-    </div>
-  </div>
+   </div>
+</div>
 );
 
 export default Landing;
