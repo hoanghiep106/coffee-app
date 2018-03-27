@@ -16,11 +16,15 @@ class PriceModel(db.Model):
 		self.product_id = product_id
 
 	def json(self):
-		return {'id': self.id, 'size': self.size, 'price': self.price}
+		return {'id': self.id, 'size': self.size, 'price': self.price, 'product_id': self.product_id}
 
 	@classmethod
 	def find_by_product_id(cls, product_id):
 		return cls.query.filter_by(product_id=product_id)
+
+	@classmethod
+	def find_by_id(cls, id):
+		return cls.query.filter_by(id=id).first()
 
 	def save_to_db(self):
 		db.session.add(self)

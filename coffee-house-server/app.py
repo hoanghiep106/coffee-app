@@ -6,6 +6,9 @@ from flask_restful import Api
 
 from resources.admin import AdminRegister
 from resources.customer import Customer, CustomerLogin
+from resources.product import Product, ProductList, ProductById
+from resources.price import Price, PriceById
+from resources.group import Group, GroupList, GroupById
 
 from security import authenticate, identify
 
@@ -19,8 +22,21 @@ api = Api(app)
 jwt = JWT(app, authenticate, identify)  # /auth
 
 api.add_resource(AdminRegister, '/register')
+
 api.add_resource(Customer, '/customer')
 api.add_resource(CustomerLogin, '/login')
+
+api.add_resource(Product, '/product')
+api.add_resource(ProductById, '/product/<string:code>')
+api.add_resource(ProductList, '/products')
+
+api.add_resource(Price, '/price')
+api.add_resource(PriceById, '/price/<string:id>')
+
+api.add_resource(Group, '/group')
+api.add_resource(GroupById, '/group/<string:code>')
+api.add_resource(GroupList, '/groups')
+
 
 if __name__ == '__main__':
 	from db import db

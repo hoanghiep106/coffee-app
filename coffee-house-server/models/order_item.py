@@ -1,31 +1,29 @@
 from db import db
+from models.product import ProductModel
 
 
 class OrderItemModel(db.Model):
 	__tablename__ = 'order_items'
 
 	id = db.Column(db.Integer, primary_key=True)
-	name = db.Column(db.String(80))
 	size = db.Column(db.String(10))
-	price = db.Column(db.Integer)
 	quantity = db.Column(db.Integer)
 
 	order_id = db.Column(db.Integer, db.ForeignKey('orders.id'))
+	product_id = db.Column(db.Integer, db.ForeignKey('product.id'))
 
-	def __init__(self, name, size, price, quantity, order_id):
-		self.name = name
+	def __init__(self, size, quantity, order_id, product_id):
 		self.size = size
-		self.price = price
 		self.quantity = quantity
 		self.order_id = order_id
+		self.product_id = product_id
 
 	def json(self):
 		return {
 			'id': self.id,
-			'name': self.name,
 			'size': self.size,
-			'price': self.price,
 			'quantity': self.quantity,
+			'product': ProductModel.find_by_id(self.product_id).to_json(),
 		}
 
 	@classmethod

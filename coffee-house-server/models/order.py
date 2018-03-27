@@ -9,6 +9,7 @@ class OrderModel(db.Model):
 	shipping_fee = db.Column(db.Integer)
 
 	customer_id = db.Column(db.Integer, db.ForeignKey('customers.id'))
+	order_items = db.relationship('OrderItemModel', lazy='dynamic')
 
 	def __init__(self, note, shipping_fee, customer_id):
 		self.note = note
@@ -21,6 +22,7 @@ class OrderModel(db.Model):
 			'note': self.note,
 			'shipping_fee': self.shipping_fee,
 			'customer_id': self.customer_id,
+			'order_items': [order_item.json() for order_item in self.order_items.all()]
 		}
 
 	@classmethod
