@@ -9,18 +9,18 @@ const CustomerInfo = (props) => {
     <div className="customer-info-step">
       <div className="header">
         <div className="">
-          <img src="assets/img/logo_tch_black.png"/>
+          <img src="assets/img/logo-grey.png"/>
         </div>
         <div className="text">
-          <span>Thông tin người nhận</span>
-          <span className="small">(Bước 1/4)</span>
+          <span>Who will receive?</span>
+          <span className="small">(Step 1/4)</span>
         </div>
       </div>
       <div className="form">
         <div className="form-group">
           <input
             className="form-control"
-            placeholder="Tên"
+            placeholder="Name"
             name="customer_name"
             onChange={handleChange}
           />
@@ -28,7 +28,7 @@ const CustomerInfo = (props) => {
         <div className="form-group">
           <input
             className="form-control"
-            placeholder="Số điện thoại"
+            placeholder="Phone number"
             name="customer_phone"
             onChange={handleChange}
           />

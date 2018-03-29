@@ -2,31 +2,31 @@ import React from 'react';
 
 const Landing = props => (
   <div className="intro-step">
-   <div className="install-app"><img src="assets/img/appicon.png"/>The Coffee House Mobile<a className="btn-install">Cài đặt ngay</a></div>
+   <div className="install-app"><img src="assets/img/logo.png"/>Coffee Now mobile</div>
    <div className="content">
       <div className="head">
-         <h3>ĐẶT HÀNG VÀ GIAO TẬN NƠI TẠI</h3>
-         <h2>THE COFFEE HOUSE DELIVERY</h2>
-         <p>Đừng quên<em> Đăng nhập </em>vào tài khoản<em> The Coffee House Rewards </em>của bạn để tích điểm và nhận các ưu đãi nhé!</p>
+         <h3>Order the best coffee in town</h3>
+         <h2>COFFEE NOW DELIVERY</h2>
+         <p>Don't forget to<em> Login </em>to your own account to be the first one to hear our promotion.</p>
       </div>
       <div className="body">
-         <img src="assets/img/tch.jpg" />
+         <img src="assets/img/coffee-now-min.jpg" />
          <div className="order-steps">
-            <h3>Các bước đặt món</h3>
+            <h3>3 simple step to order</h3>
             <ol>
-               <li>Điền thông tin nhận hàng (tên, số điện thoại, địa chỉ nhận hàng)</li>
-               <li>Chọn món yêu thích</li>
-               <li>Tối đa 30 phút <span className="legend"> (*) </span>bạn sẽ có ngay món uống yêu thích!</li>
+               <li>Let us know your name, phone numbera and address</li>
+               <li>Choose some fabulous beverages</li>
+               <li>Wait 30 minutes(*) to enjoy COFFEE NOW at your place</li>
             </ol>
          </div>
          <div className="notes">
-            <p>(*) Thời gian có thể khác nhau tùy thuộc vào vị trí và giao thông tại thời điểm đặt hàng</p>
-            <p>Thời gian phục vụ : 7h-20h</p>
+            <p>Time can be vary due to distance to the nearest shop</p>
+            <p>Working hours: 7am-10pm</p>
          </div>
       </div>
     </div>
     <div className="controls">
-      <button className="action-button" onClick={() => props.history.push('/app')}>Đặt hàng ngay</button>
+      <button className="action-button" onClick={() => props.history.push('/app')}>ORDER NOW</button>
     </div>
 </div>
 );

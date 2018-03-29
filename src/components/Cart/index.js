@@ -3,9 +3,9 @@ import React from 'react';
 const Cart = (props) => (
     <div className="fixed-header-panel summary-step">
         <div className="header">
-            <span className="title">Đơn hàng</span>
-            <span className="small">(Bước 4/4)</span>
-            <i className="fa fa-angle-left" onClick={() => props.goBack()}></i>
+            <span className="title">Your order</span>
+            <span className="small">(Step 4/4)</span>
+            <i className="fa fa-angle-left pointer" onClick={() => props.goBack()}></i>
         </div>
         <div className="content">
         <div className="header-separator"></div>

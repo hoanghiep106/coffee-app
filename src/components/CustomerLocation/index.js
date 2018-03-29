@@ -20,9 +20,9 @@ class CustonmerLocation extends Component {
 		return (
 			<div className="fixed-header-panel location-step">
 				<div className="header">
-					<span className="title">Địa điểm giao hàng</span>
-					<span className="small">(Bước 2/4)</span>
-					<i className="fa fa-angle-left" onClick={() => this.props.goBack()}></i>
+					<span className="title">Where should we deliver to?</span>
+					<span className="small">(Step 2/4)</span>
+					<i className="fa fa-angle-left pointer" onClick={() => this.props.goBack()}></i>
 				</div>
 				<div className="content">
 					<div className="form-panel">
@@ -30,7 +30,7 @@ class CustonmerLocation extends Component {
 							<div className="form-group">
 								<input
 									className="form-control"
-									placeholder="Vị trí của bạn"
+									placeholder="Search your location"
 									name="customer_location"/>
 							</div>
 						</div>

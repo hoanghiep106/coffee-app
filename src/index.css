@@ -64,7 +64,7 @@ a:hover{
   display: block;
   position: absolute;
   bottom: 0;
-  background-color: #ff792c;
+  background-color: #8FC53B;
   color: #fff;
   text-align: center;
   width: 100%;
@@ -99,7 +99,7 @@ a:hover{
   text-align:center;
   line-height:32px;
   font-size:18px;
-  background-color:#ff792c;
+  background-color:#8FC53B;
   color:#fff;
   border-radius:50%
 }
@@ -168,7 +168,7 @@ a:hover{
 .flip-wizard > .controls > .btn-next{
   display:block;
   position:relative;
-  background-color:#ff792c;
+  background-color:#8FC53B;
   color:#fff;
   text-align:center;
   width:100%;
@@ -183,7 +183,7 @@ a:hover{
   right:10px
 }
 .flip-wizard > .controls > .btn-next:disabled{
-  background-color:#ffb08c
+  background-color:#B6DD7A;
 }
 .order-form{
   width:100%;
@@ -200,7 +200,7 @@ a:hover{
   background:#444
 }
 .order-form .finish-controls .btn-finish{
-  background-color:#ff792c;
+  background-color:#8FC53B;
   color:#fff
 }
 .fixed-header-panel{
@@ -231,7 +231,13 @@ a:hover{
   position:absolute;
   top:19px;
   left:16px;
-  font-size:22px
+  font-size:22px;
+  width: 24px;
+  height: 24px;
+}
+.fixed-header-panel > .header .fa-angle-left:hover{
+  background-color: #ddd;
+  border-radius: 50%;
 }
 .fixed-header-panel > .content{
   height:100%;
@@ -333,7 +339,7 @@ a:hover{
   top:7px;
   right:9px;
   text-transform:uppercase;
-  background-color:#ff792c;
+  background-color:#8FC53B;
   color:#fff;
   border-radius:4px;
   padding:6px 12px;
@@ -360,12 +366,13 @@ a:hover{
   font-size:16px;
 }
 .intro-step .content .head p em{
-  color:#ff792c;
+  color:#8FC53B;
   font-weight:600;
   font-style:normal
 }
 .intro-step .content .body img{
-  max-width:100%;
+  width: 100%;
+  max-width: 600px;
   border:4px solid #fff;
   border-radius:5px
 }
@@ -375,10 +382,10 @@ a:hover{
   text-transform:uppercase
 }
 .intro-step .content .body .order-steps .legend{
-  color:#ff792c
+  color:#8FC53B;
 }
 .intro-step .content .body .notes{
-  color:#ff792c
+  color:#8FC53B;
 }
 .collapsible > .title{
   border-bottom:1px solid #ddd
@@ -410,7 +417,7 @@ a:hover{
 }
 .items-step .group-title{
   font-size:20px;
-  color:#ff792c;
+  color:#8FC53B;
   font-weight:600;
   padding:10px 15px;
 }
@@ -420,7 +427,7 @@ a:hover{
   border-radius:50%;
   margin-left:10px;
   text-align:center;
-  background-color:#ff792c;
+  background-color:#8FC53B;
   font-size:11px;
   width:20px;
   height:20px;
@@ -463,7 +470,7 @@ a:hover{
   text-align:center;
   text-transform:uppercase;
   color:#fff;
-  background:rgba(255,121,44,0.7);
+  background: #769940;
   font-size:13px;
   font-weight:700
 }
@@ -491,10 +498,10 @@ a:hover{
   color:#000
 }
 .items-step .products .product .selector .size.size-s.active{
-  background-color:#f9c159
+  background-color:#B6DD7A;
 }
 .items-step .products .product .selector .size.size-m.active{
-  background-color:#fd9626
+  background-color:#8FC53B;
 }
 .items-step .products .product .selector .size .icon{
   display:inline-block;
@@ -571,7 +578,7 @@ a:hover{
   padding-right:270px;
 }
 .summary-step .bill-items .bill-item .sizes .size .name-price{
-  color:#ff792c;
+  color:#8FC53B;
   text-transform:capitalize;
   font-size:11px
 }
@@ -601,7 +608,7 @@ a:hover{
   right:0;
   width:165px;
   text-align:right;
-  color:#ff792c;
+  color:#8FC53B;
   font-weight:700;
   font-size:15px
 }

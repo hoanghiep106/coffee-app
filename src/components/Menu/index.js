@@ -12,9 +12,9 @@ const Menu = (props) => {
   return(
     <div className="fixed-header-panel items-step">
       <div className="header">
-        <span className="title">Menu "nhà cà phê"</span>
-        <span className="small">(Bước 3/4)</span>
-        <i className="fa fa-angle-left" onClick={() => props.goBack()} />
+        <span className="title">Picking all huh?</span>
+        <span className="small">(Step 3/4)</span>
+        <i className="fa fa-angle-left pointer" onClick={() => props.goBack()} />
       </div>
       <div className="content">
         {Categories}

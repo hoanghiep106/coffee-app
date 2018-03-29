@@ -35,7 +35,7 @@ const MainGoogleMap = withGoogleMap(props => (
           </button>
         )
       }
-      <img src="assets/img/marker.png" className="marker" />
+      <img src="assets/img/location-marker.svg" className="marker" />
     </div>
   </GoogleMap>
 ));

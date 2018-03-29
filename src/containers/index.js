@@ -13,23 +13,23 @@ class Container extends Component {
     this.state = {
       steps: [
         {
-          nextStep: 'Chọn ví trí giao hàng',
+          nextStep: 'Pick your location',
           goNext: () => this.goNext(),
           render: (props) => <CustomerInfo {...props} />,
         },
         {
-          nextStep: 'Chọn món',
+          nextStep: 'Check out the menu',
           goNext: () => this.goNext(),
           render: (props) =>
             <CustomerLocation { ...props } />,
         },
         {
-          nextStep: 'Xem giỏ hàng',
+          nextStep: 'See your cart',
           goNext: () => this.goNext(),
           render: (props) => <Menu { ...props } />,
         },
         {
-          nextStep: 'Gửi đơn hàng',
+          nextStep: 'Send your order',
           goNext: () => this.submitOrder(),
           render: (props) => <Cart { ...props } />,
         }
