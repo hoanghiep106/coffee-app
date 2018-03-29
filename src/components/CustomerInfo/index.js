@@ -5,6 +5,10 @@ const CustomerInfo = (props) => {
     props.handleChange(e.target.name, e.target.value);
   };
 
+  const renderErrorMessage = (message) => message && (
+    <div>{`(*) ${message}`}</div>
+  );
+
   return (
     <div className="customer-info-step">
       <div className="header">
@@ -12,7 +16,7 @@ const CustomerInfo = (props) => {
           <img src="assets/img/logo-grey.png"/>
         </div>
         <div className="text">
-          <span>Who will receive?</span>
+          <span>Who will have a good day?</span>
           <span className="small">(Step 1/4)</span>
         </div>
       </div>
@@ -23,6 +27,7 @@ const CustomerInfo = (props) => {
             placeholder="Name"
             name="customer_name"
             onChange={handleChange}
+            value={props.orderInfo.customer_name}
           />
         </div>
         <div className="form-group">
@@ -31,6 +36,7 @@ const CustomerInfo = (props) => {
             placeholder="Phone number"
             name="customer_phone"
             onChange={handleChange}
+            value={props.orderInfo.customer_phone}
           />
         </div>
         <div className="form-group">
@@ -39,8 +45,14 @@ const CustomerInfo = (props) => {
             placeholder="Email"
             name="customer_email"
             onChange={handleChange}
+            value={props.orderInfo.customer_email}
           />
         </div>
+      </div>
+      <div className="errors">
+        {renderErrorMessage(props.errors.customer_name)}
+        {renderErrorMessage(props.errors.customer_phone)}
+        {renderErrorMessage(props.errors.customer_email)}
       </div>
     </div>
   )

@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import { Switch, Route } from 'react-router-dom';
 import CategoryService from '../services/Category';
+import { maxDistance } from '../config/app';
+import { validateEmail } from '../utils';
 import CustomerInfo from '../components/CustomerInfo';
 import CustomerLocation from '../components/CustomerLocation';
 import Menu from '../components/Menu';
@@ -37,6 +39,7 @@ class Container extends Component {
       currentStep: 1,
       orderInfo: {},
       categories: [],
+      errors: {},
     };
     this.fetchProducts = this.fetchProducts.bind(this);
     this.goNext = this.goNext.bind(this);
@@ -56,8 +59,52 @@ class Container extends Component {
     });
   }
 
+  isDataValid() {
+    const { orderInfo, errors } = this.state;
+    let errorCount = 0;
+    if (this.state.currentStep === 1) {
+      if (!orderInfo.customer_name) {
+        errors.customer_name = 'Name is required';
+        errorCount++;
+      } else if (orderInfo.customer_name.length > 50) {
+        errors.customer_name = 'Too long name';
+        errorCount++;
+      } else {
+        errors.customer_name = '';
+      }
+      if (!orderInfo.customer_phone) {
+        errors.customer_phone = 'Phone number is required';
+        errorCount++;
+      } else if (orderInfo.customer_phone.length > 13 || orderInfo.customer_phone.length < 9) {
+        errors.customer_phone = 'Phone number is not valid';
+        errorCount++;
+      } else {
+        errors.customer_phone = '';
+      }
+      if (orderInfo.customer_email && !validateEmail(orderInfo.customer_email)) {
+        errors.customer_email = 'Email not valid';
+        errorCount++;
+      } else {
+        errors.customer_email = '';
+      }
+    } else if (this.state.currentStep === 2) {
+      if (!orderInfo.customer_location) {
+        errors.customer_location = 'Location is required';
+        errorCount++;
+      } else if (orderInfo.distance > maxDistance) {
+        errors.customer_location = 'Location is out of range';
+        errorCount++;
+      } else {
+        errors.customer_location = '';
+      }
+    }
+    this.setState({ errors });
+    if (errorCount > 0) return false;
+    return true;
+  }
+
   goNext() {
-    if (this.state.currentStep < 4) {
+    if (this.state.currentStep < 4 && this.isDataValid()) {
       this.setState({
         currentStep: this.state.currentStep + 1
       });
@@ -86,9 +133,9 @@ class Container extends Component {
 
   render() {
     return (
-        <div className="coffee-app">
-          <div className="order-form">
-            <div className="flip-wizard">
+      <div className="coffee-app">
+        <div className="order-form">
+          <div className="flip-wizard">
               <div className="flip-panel step-panel">
                 <div className="flip-card">
                   {this.state.steps[this.state.currentStep - 1].render({
@@ -96,18 +143,20 @@ class Container extends Component {
                     currentStep: this.state.currentStep,
                     handleChange: this.handleChange,
                     categories: this.state.currentStep === 3 && this.state.categories,
+                    errors: this.state.errors,
+                    orderInfo: this.state.orderInfo,
                   })}
                 </div>
               </div>
               <div className="controls">
-                <button className="btn-next" onClick={this.state.steps[this.state.currentStep - 1].goNext}>
-                  {this.state.steps[this.state.currentStep - 1].nextStep}
-                </button>
+                  <button className="btn-next" onClick={this.state.steps[this.state.currentStep - 1].goNext}>
+                    {this.state.steps[this.state.currentStep - 1].nextStep}
+                  </button>
               </div>
-            </div>
           </div>
-          <Login />
         </div>
+        <Login />
+      </div>
     );
   }
 }

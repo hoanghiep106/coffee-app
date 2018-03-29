@@ -21,9 +21,12 @@ export const categories = [
   }
 ];
 
+export const maxDistance = 10;
+
 export const googleConfig = {
   currentCountry: 'vn',
-  defaultCenter: { lat: 21.027029, lng: 105.856645 },
+  defaultAddress: '5 Nguyễn Quang Bich Hoàn Kiếm Hà Nội',
+  defaultCenter: { lat: 21.0291115, lng: 105.8348923 },
   defaultZoom: 15,
   mapStyles: [
     {

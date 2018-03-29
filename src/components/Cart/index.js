@@ -3,7 +3,7 @@ import React from 'react';
 const Cart = (props) => (
     <div className="fixed-header-panel summary-step">
         <div className="header">
-            <span className="title">Your order</span>
+            <span className="title">Only These? Really?</span>
             <span className="small">(Step 4/4)</span>
             <i className="fa fa-angle-left pointer" onClick={() => props.goBack()}></i>
         </div>

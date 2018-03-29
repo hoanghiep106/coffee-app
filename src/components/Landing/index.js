@@ -14,13 +14,13 @@ const Landing = props => (
          <div className="order-steps">
             <h3>3 simple step to order</h3>
             <ol>
-               <li>Let us know your name, phone numbera and address</li>
+               <li>Let us know your name, phone numbers and address</li>
                <li>Choose some fabulous beverages</li>
-               <li>Wait 30 minutes(*) to enjoy COFFEE NOW at your place</li>
+               <li>Wait 30 minutes(*) to enjoy<em> COFFEE NOW </em>at your place</li>
             </ol>
          </div>
          <div className="notes">
-            <p>Time can be vary due to distance to the nearest shop</p>
+            <p>(*) Time can be varied due to the distance from your place to the nearest shop</p>
             <p>Working hours: 7am-10pm</p>
          </div>
       </div>
