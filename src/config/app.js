@@ -21,7 +21,7 @@ export const categories = [
   }
 ];
 
-export const maxDistance = 10;
+export const maxShippingFee = 50000;
 
 export const googleConfig = {
   currentCountry: 'vn',

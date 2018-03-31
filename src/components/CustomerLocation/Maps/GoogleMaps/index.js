@@ -1,6 +1,5 @@
 import React from 'react';
 import { withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
-import SearchBox from 'react-google-maps/lib/places/SearchBox';
 import { googleConfig } from '../../../../config/app';
 
 const MainGoogleMap = withGoogleMap(props => (
@@ -10,7 +9,6 @@ const MainGoogleMap = withGoogleMap(props => (
     center={props.center || googleConfig.defaultCenter}
     bounds={props.bounds}
     onClick={props.onMapClick ? props.onMapClick : () => null}
-    onDragEnd={props.onMapDragEnd}
     defaultOptions={{
       mapTypeControl: false,
       styles: googleConfig.mapStyles,
@@ -35,7 +33,10 @@ const MainGoogleMap = withGoogleMap(props => (
           </button>
         )
       }
-      <img src="assets/img/location-marker.svg" className="marker" />
+      <Marker
+        icon={{ url: "assets/img/location-marker.svg", scaledSize: new window.google.maps.Size(35, 35)}}
+        position={props.center}
+      />
     </div>
   </GoogleMap>
 ));

@@ -3,19 +3,16 @@ import GoogleMaps from './GoogleMaps';
 import { googleConfig } from '../../../config/app';
 
 const { google } = window;
-const geocoder = new google.maps.Geocoder;
+const geocoder = new google.maps.Geocoder();
 
 const Maps = (props) => {
-  const handleMapDragEnd = (event) => {
+  const handleMapClick = (event) => {
     geocoder.geocode({'location': event.latLng}, (results, status) => {
       if (status === 'OK' && results[0]) {
         props.onLocationMapChange(results[0]);
       }
     });
   };
-  const handleMapDrag = (event) => {
-    props.handleMapDrag(event.latLng);
-  }
   return (
     <GoogleMaps
       containerElement={
@@ -26,8 +23,7 @@ const Maps = (props) => {
       }
       center={props.center}
       defaultZoom={googleConfig.defaultZoom}
-      onMapDragEnd={handleMapDragEnd}
-      onMapDrag={handleMapDrag}
+      onMapClick={handleMapClick}
     />
   );
 }

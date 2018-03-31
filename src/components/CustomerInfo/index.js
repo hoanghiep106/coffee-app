@@ -13,7 +13,7 @@ const CustomerInfo = (props) => {
     <div className="customer-info-step">
       <div className="header">
         <div className="">
-          <img src="assets/img/logo-grey.png"/>
+          <img src="assets/img/logo-grey.png" alt="logo-grey" />
         </div>
         <div className="text">
           <span>Who will have a good day?</span>

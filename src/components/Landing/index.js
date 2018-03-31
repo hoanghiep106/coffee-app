@@ -2,7 +2,7 @@ import React from 'react';
 
 const Landing = props => (
   <div className="intro-step">
-   <div className="install-app"><img src="assets/img/logo.png"/>Coffee Now mobile</div>
+   <div className="install-app"><img src="assets/img/logo.png" alt="logo"/>Coffee Now mobile</div>
    <div className="content">
       <div className="head">
          <h3>Order the best coffee in town</h3>
@@ -10,7 +10,7 @@ const Landing = props => (
          <p>Don't forget to<em> Login </em>to your own account to be the first one to hear our promotion.</p>
       </div>
       <div className="body">
-         <img src="assets/img/coffee-now-min.jpg" />
+         <img src="assets/img/coffee-now-min.jpg" alt="coffee-now"/>
          <div className="order-steps">
             <h3>3 simple step to order</h3>
             <ol>

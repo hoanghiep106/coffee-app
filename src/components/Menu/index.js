@@ -2,6 +2,7 @@ import React from 'react';
 import Category from './Category';
 
 const Menu = (props) => {
+  console.log(props.categories)
   const Categories = props.categories.map(category =>
     <Category
       key={category.id}

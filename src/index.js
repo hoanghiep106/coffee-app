@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { HashRouter, Route, Switch, Redirect } from 'react-router-dom';
+import { HashRouter, Route, Switch } from 'react-router-dom';
 import ReactDOM from 'react-dom';
 import 'font-awesome/css/font-awesome.min.css';
 

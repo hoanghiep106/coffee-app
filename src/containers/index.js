@@ -1,12 +1,18 @@
 import React, {Component} from 'react';
-import { Switch, Route } from 'react-router-dom';
+//Services
 import CategoryService from '../services/Category';
-import { maxDistance } from '../config/app';
+import CustomerService from '../services/Customer';
+import OrderService from '../services/Order';
+// Config
+import { maxShippingFee } from '../config/app';
+// Utility functions
 import { validateEmail } from '../utils';
+// Step frames
 import CustomerInfo from '../components/CustomerInfo';
 import CustomerLocation from '../components/CustomerLocation';
 import Menu from '../components/Menu';
 import Cart from '../components/Cart';
+// Login modal
 import Login from '../components/Login';
 
 class Container extends Component {
@@ -16,23 +22,23 @@ class Container extends Component {
       steps: [
         {
           nextStep: 'Pick your location',
-          goNext: () => this.goNext(),
+          goNext: this.createCustomer.bind(this),
           render: (props) => <CustomerInfo {...props} />,
         },
         {
           nextStep: 'Check out the menu',
-          goNext: () => this.goNext(),
+          goNext: this.updateCustomerLocation.bind(this),
           render: (props) =>
             <CustomerLocation { ...props } />,
         },
         {
           nextStep: 'See your cart',
-          goNext: () => this.goNext(),
+          goNext: this.goNext,
           render: (props) => <Menu { ...props } />,
         },
         {
           nextStep: 'Send your order',
-          goNext: () => this.submitOrder(),
+          goNext: this.submitOrder,
           render: (props) => <Cart { ...props } />,
         }
       ],
@@ -88,10 +94,10 @@ class Container extends Component {
         errors.customer_email = '';
       }
     } else if (this.state.currentStep === 2) {
-      if (!orderInfo.customer_location) {
+      if (!orderInfo.customer_location || !orderInfo.customer_location.title) {
         errors.customer_location = 'Location is required';
         errorCount++;
-      } else if (orderInfo.distance > maxDistance) {
+      } else if (orderInfo.customer_location.fee > maxShippingFee) {
         errors.customer_location = 'Location is out of range';
         errorCount++;
       } else {
@@ -103,7 +109,43 @@ class Container extends Component {
     return true;
   }
 
-  goNext() {
+  createCustomer(e) {
+    e.preventDefault();
+    if (this.isDataValid()) {
+      const { orderInfo } = this.state;
+      const data = {
+        name: orderInfo.customer_name,
+        phone_number: orderInfo.customer_phone,
+        email: orderInfo.customer_email,
+      }
+      CustomerService.createCustomer(data).then(res => {
+        if(res.data) {
+          orderInfo.customer_id = res.data.id;
+          this.setState({ currentStep: 2, orderInfo });
+        }
+      })
+    }
+  }
+
+  updateCustomerLocation(e) {
+    e.preventDefault();
+    console.log(this.state.orderInfo);
+    if (this.isDataValid()) {
+      const { orderInfo } = this.state;
+      const id = orderInfo.customer_id;
+      const data = {
+        location: orderInfo.customer_location.title,
+        lat: orderInfo.customer_location.lat,
+        lng: orderInfo.customer_location.lng,
+      };
+      CustomerService.updateCustomer(id, data).then(res => {
+        this.setState({ currentStep: 3 });
+      });
+    }
+  }
+
+  goNext(e) {
+    e.preventDefault();
     if (this.state.currentStep < 4 && this.isDataValid()) {
       this.setState({
         currentStep: this.state.currentStep + 1
@@ -127,8 +169,9 @@ class Container extends Component {
     }
   }
 
-  submitOrder() {
-    console.log(this.state.orderInfo);
+  submitOrder(e) {
+    e.preventDefault();
+    OrderService.postOrder(this.state.orderInfo);
   }
 
   render() {
@@ -136,6 +179,7 @@ class Container extends Component {
       <div className="coffee-app">
         <div className="order-form">
           <div className="flip-wizard">
+            <form onSubmit={this.state.steps[this.state.currentStep - 1].goNext}>
               <div className="flip-panel step-panel">
                 <div className="flip-card">
                   {this.state.steps[this.state.currentStep - 1].render({
@@ -149,10 +193,11 @@ class Container extends Component {
                 </div>
               </div>
               <div className="controls">
-                  <button className="btn-next" onClick={this.state.steps[this.state.currentStep - 1].goNext}>
-                    {this.state.steps[this.state.currentStep - 1].nextStep}
-                  </button>
+                <button className="btn-next" type="submit">
+                  {this.state.steps[this.state.currentStep - 1].nextStep}
+                </button>
               </div>
+            </form>
           </div>
         </div>
         <Login />
