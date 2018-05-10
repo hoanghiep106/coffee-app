@@ -44,8 +44,9 @@ class CustonmerLocation extends Component {
 		const lat = location.geometry.location.lat();
 		const lng = location.geometry.location.lng();
 		OrderService.getShippingFee(lat, lng).then((res) => {
-			if (res.data.distance) {
-				const { distance } = res.data;
+			if (res.data.distances) {
+				const { distances } = res.data;
+				const distance = distances.sort((a, b) => a.distance > b.distance)[0];
 				const values = {
 					title: location.formatted_address,
 					lat,
@@ -77,8 +78,9 @@ class CustonmerLocation extends Component {
       .then((latLng) => {
 				this.setState({ locationLatLng: latLng });
 				OrderService.getShippingFee(latLng.lat, latLng.lng).then((res) => {
-					if (res.data.distance) {
-						const { distance } = res.data;
+					if (res.data.distances) {
+						const { distances } = res.data;
+						const distance = distances.sort((a, b) => a.distance > b.distance)[0];
 						const values = {
 							title: location,
 							lat: latLng.lat,

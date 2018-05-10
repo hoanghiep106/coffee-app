@@ -33,12 +33,12 @@ class Container extends Component {
         },
         {
           nextStep: 'See your cart',
-          goNext: this.goNext,
+          goNext: this.goNext.bind(this),
           render: (props) => <Menu { ...props } />,
         },
         {
           nextStep: 'Send your order',
-          goNext: this.submitOrder,
+          goNext: this.submitOrder.bind(this),
           render: (props) => <Cart { ...props } />,
         }
       ],
@@ -103,6 +103,13 @@ class Container extends Component {
       } else {
         errors.customer_location = '';
       }
+    } else if (this.state.currentStep === 3) {
+      if (!orderInfo.order_items || orderInfo.order_items.length === 0) {
+        errors.customer_location = 'Empty cart';
+        errorCount++;
+      } else {
+        errors.customer_location = '';
+      }
     }
     this.setState({ errors });
     if (errorCount > 0) return false;
@@ -129,7 +136,6 @@ class Container extends Component {
 
   updateCustomerLocation(e) {
     e.preventDefault();
-    console.log(this.state.orderInfo);
     if (this.isDataValid()) {
       const { orderInfo } = this.state;
       const id = orderInfo.customer_id;

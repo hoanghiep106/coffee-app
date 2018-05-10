@@ -37,6 +37,14 @@ const MainGoogleMap = withGoogleMap(props => (
         icon={{ url: "assets/img/location-marker.svg", scaledSize: new window.google.maps.Size(35, 35)}}
         position={props.center}
       />
+      {props.markers && props.markers.map(marker => (
+        <Marker
+          key={marker.id}
+          icon={{ url: "assets/img/shop-marker.svg", scaledSize: new window.google.maps.Size(35, 35)}}
+          position={marker}
+        />
+      ))
+      }
     </div>
   </GoogleMap>
 ));
