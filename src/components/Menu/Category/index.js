@@ -16,11 +16,19 @@ class Category extends Component {
   }
 
   render() {
-    const Items = this.props.items.map(item => <Item key={item.id} { ...item } />);
+    const Items = this.props.items.map((item, index) =>
+      <Item
+        key={item.id}
+        productIndex={index}
+        categoryIndex={this.props.category.index}
+        { ...item }
+        onAddItem={this.props.onAddItem}
+      />
+    );
     return (
       <div className="collapsible">
         <div className="title pointer" onClick={this.toggleItems} >
-          <div className="group-title">{this.props.title}</div>
+          <div className="group-title">{this.props.category.name}</div>
         </div>
         <ReactCSSTransitionGroup
           component="div"

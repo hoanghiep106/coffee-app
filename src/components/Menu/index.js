@@ -5,28 +5,40 @@ class Menu extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      cart: [],
-    }
+      categories: this.props.categories,
+    };
+    this.orderItems = [];
   }
 
   handleAddItem = (item) => {
-    if (this.state.cart && this.state.cart.length > 0) {
-      const existedIds = this.state.cart.map(item => item.id);
-      if (!existedIds.includes(item.product_detail_id)) {
-        this.setState({ cart: [...this.state.cart, { ...item, quantity: 1 }] });
-      } else {
-        this.setState({
-          cart: this.state.cart.map(item => ({ ...item, quantity: item.quantity + 1 })),
-        });
-      }
+    const categories = [...this.state.categories];
+    if (categories[item.categoryIndex].products[item.productIndex].product_details[item.index].quantity) {
+      categories[item.categoryIndex].products[item.productIndex].product_details[item.index].quantity ++;
+    } else {
+      categories[item.categoryIndex].products[item.productIndex].product_details[item.index].quantity = 1;
     }
+    if (this.orderItems.filter(orderItem => orderItem.product_detail_id === item.productDetailId).length !== 0) {
+      this.orderItems.forEach(orderItem => {
+        if (orderItem.product_detail_id === item.productDetailId) {
+          orderItem.quantity = categories[item.categoryIndex].products[item.productIndex].product_details[item.index].quantity;
+        }
+      });
+    } else {
+      this.orderItems.push({
+        product_detail_id: item.productDetailId,
+        product_id: item.productId,
+        quantity: categories[item.categoryIndex].products[item.productIndex].product_details[item.index].quantity,
+      });
+    }
+    this.props.handleChange('order_items', this.orderItems);
+    this.setState({ categories });
   }
 
   render() {
-    const Categories = this.props.categories.map(category =>
+    const Categories = this.state.categories.map((category, index) =>
       <Category
         key={category.id}
-        title={category.name}
+        category={{ ...category, index }}
         items={category.products}
         onAddItem={this.handleAddItem}
       />

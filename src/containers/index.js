@@ -46,6 +46,7 @@ class Container extends Component {
       orderInfo: {},
       categories: [],
       errors: {},
+      customerCreated: false,
     };
     this.fetchProducts = this.fetchProducts.bind(this);
     this.goNext = this.goNext.bind(this);
@@ -125,12 +126,18 @@ class Container extends Component {
         phone_number: orderInfo.customer_phone,
         email: orderInfo.customer_email,
       }
-      CustomerService.createCustomer(data).then(res => {
-        if(res.data) {
-          orderInfo.customer_id = res.data.id;
-          this.setState({ currentStep: 2, orderInfo });
-        }
-      })
+      if (this.state.customerCreated && this.state.orderInfo.customer_id) {
+        CustomerService.updateCustomer(this.state.orderInfo.customer_id, data).then(() => {
+          this.setState({ currentStep: 2 });
+        });
+      } else {
+        CustomerService.createCustomer(data).then(res => {
+          if(res.data) {
+            orderInfo.customer_id = res.data.id;
+            this.setState({ currentStep: 2, orderInfo, customerCreated: true });
+          }
+        });
+      }
     }
   }
 
@@ -177,7 +184,19 @@ class Container extends Component {
 
   submitOrder(e) {
     e.preventDefault();
-    OrderService.postOrder(this.state.orderInfo);
+    const { orderInfo } = this.state;
+    const data = {
+      customer_id: orderInfo.customer_id,
+      shop_id: orderInfo.customer_location.shop_id,
+      shipping_fee: orderInfo.customer_location.fee,
+      order_items: orderInfo.order_items,
+      status: 1,
+    }
+    OrderService.postOrder(data).then(res => {
+      if (res.status === 200) {
+        alert('Đơn hàng của bạn đang được xử lý. Chúng tôi sẽ liên hệ bạn trong thời gian ngắn nhất để xác nhận. Xin cám ơn!')
+      }
+    });
   }
 
   render() {
