@@ -12,8 +12,6 @@ import CustomerInfo from '../components/CustomerInfo';
 import CustomerLocation from '../components/CustomerLocation';
 import Menu from '../components/Menu';
 import Cart from '../components/Cart';
-// Login modal
-import Login from '../components/Login';
 
 class Container extends Component {
   constructor(props) {
@@ -192,9 +190,11 @@ class Container extends Component {
       order_items: orderInfo.order_items,
       status: 1,
     }
+    this.setState({ loading: true });
     OrderService.postOrder(data).then(res => {
       if (res.status === 200) {
-        alert('Đơn hàng của bạn đang được xử lý. Chúng tôi sẽ liên hệ bạn trong thời gian ngắn nhất để xác nhận. Xin cám ơn!')
+        alert('Đơn hàng của bạn đang được xử lý. Chúng tôi sẽ liên hệ bạn trong thời gian ngắn nhất để xác nhận. Xin cám ơn!');
+        this.props.history.push('/');
       }
     });
   }
@@ -218,14 +218,13 @@ class Container extends Component {
                 </div>
               </div>
               <div className="controls">
-                <button className="btn-next" type="submit">
+                <button className="btn-next" type="submit" disabled={this.state.loading}>
                   {this.state.steps[this.state.currentStep - 1].nextStep}
                 </button>
               </div>
             </form>
           </div>
         </div>
-        <Login />
       </div>
     );
   }

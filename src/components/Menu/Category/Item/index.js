@@ -13,8 +13,10 @@ const Item = (props) => {
         productId: detail.product_id,
       })}
     >
-      <div className="icon"><img src={`assets/img/cup/coffe-cup-${detail.size === 1 ? 's': 'm'}-a.png`} alt="cup"/></div>
-      {console.log(detail.quantity)}
+      <div className="icon">
+        <img src={`assets/img/cup/coffe-cup-${detail.size === 1 ? 's': 'm'}-a.png`} alt="cup"/>
+        <div className="qty">{detail.quantity}</div>
+      </div>
       <div className="price">{detail.price}</div>
     </div>
   ));

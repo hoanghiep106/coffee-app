@@ -1,4 +1,4 @@
-const baseUrl = 'http://localhost:8000/api';
+const baseUrl = 'http://localhost:3000';
 
 export const productsUrl = `${baseUrl}/products`;
 export const categoriesUrl = `${baseUrl}/categories`;

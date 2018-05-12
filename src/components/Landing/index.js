@@ -9,7 +9,7 @@ const Landing = props => (
          <h2>COFFEE NOW DELIVERY</h2>
          <p>Don't forget to<em> Login </em>to your own account to be the first one to hear our promotion.</p>
       </div>
-      <div className="body">
+      <div className="body text-center">
          <img src="assets/img/coffee-now-min.jpg" alt="coffee-now"/>
          <div className="order-steps">
             <h3>3 simple step to order</h3>

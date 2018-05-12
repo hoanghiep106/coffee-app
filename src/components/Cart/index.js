@@ -9,8 +9,7 @@ const SIZE = {
 class Cart extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props);
-
+    console.log(props.orderInfo);
     this.state = {
       products: [],
     }
@@ -41,6 +40,12 @@ class Cart extends React.Component {
     );
   }
 
+  getPrice(orderItem) {
+    const product = this.state.products.filter(product => product.id === orderItem.product_id)[0];
+    const productDetail = product.product_details.filter(productDetail => productDetail.id === orderItem.product_detail_id)[0];
+    return productDetail.price * orderItem.quantity;
+  }
+
   render() {
     if (this.state.products.length === 0) return null;
     return (
@@ -54,13 +59,17 @@ class Cart extends React.Component {
           <div className="header-separator"></div>
           <div className="bill-items">
             {this.props.orderInfo.order_items.map(orderItem => this.getProductDetail(orderItem))}
-            {/* <hr/>
-            Nhập mã coupon
             <hr/>
-            Thành tiền:59000 */}
+            <h5 className="coupon-input">Nhập mã coupon</h5>
+            <input name="coupon" onChange={this.handleChange} />
+            <button onClick={this.handleCouponCheck}>Add coupon</button>
+            <hr/>
+            <h3 className="total-price">
+              Thành tiền: {this.props.orderInfo.order_items.reduce((acc, orderItem) => acc + this.getPrice(orderItem), 0)}
+            </h3>
           </div>
-          <div style={{marginLeft: '20px'}}>{this.props.orderInfo.customer_name} - {this.props.orderInfo.customer_phone}</div>
-          <div style={{marginLeft: '20px'}}>{this.props.orderInfo.customer_location.title}</div>
+          <div className="customer-name"><b>{this.props.orderInfo.customer_name}</b></div>
+          <div className="customer-info">{this.props.orderInfo.customer_location.title} - {this.props.orderInfo.customer_phone}</div>
           </div>
       </div>
     );
