@@ -1,5 +1,6 @@
 import React from 'react';
 import ProductService from '../../services/Product';
+import OrderService from '../../services/Order';
 
 const SIZE = {
   1: 'M',
@@ -9,9 +10,12 @@ const SIZE = {
 class Cart extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props.orderInfo);
     this.state = {
+      code: '',
       products: [],
+      discountPercentage: 0,
+      showError: false,
+      showSuccess: false,
     }
   }
 
@@ -40,10 +44,29 @@ class Cart extends React.Component {
     );
   }
 
-  getPrice(orderItem) {
+  getPrice = (orderItem) => {
     const product = this.state.products.filter(product => product.id === orderItem.product_id)[0];
     const productDetail = product.product_details.filter(productDetail => productDetail.id === orderItem.product_detail_id)[0];
-    return productDetail.price * orderItem.quantity;
+    const totalPrice = productDetail.price * orderItem.quantity;
+    return totalPrice - totalPrice * this.state.discountPercentage;
+  }
+
+  handleCouponCheck = () => {
+    OrderService.checkCoupon(this.state.code).then(res => {
+      if (res.data.code && res.data.status === 1) {
+        this.setState({ 
+          discountPercentage: res.data.percentage / 100,
+          showError: false,
+          showSuccess: true,
+        });
+      } else {
+        this.setState({ 
+          showError: true,
+          discountPercentage: 0,
+          showSuccess: false,
+        })
+      }
+    });
   }
 
   render() {
@@ -61,8 +84,10 @@ class Cart extends React.Component {
             {this.props.orderInfo.order_items.map(orderItem => this.getProductDetail(orderItem))}
             <hr/>
             <h5 className="coupon-input">Nhập mã coupon</h5>
-            <input name="coupon" onChange={this.handleChange} />
-            <button onClick={this.handleCouponCheck}>Add coupon</button>
+            <input name="coupon" value={this.state.coupon} onChange={(e) => this.setState({ code: e.target.value })} />
+            <button onClick={this.handleCouponCheck} type="button">Add coupon</button>
+            {this.state.showError && <span><p style={{ color: 'red' }}>Mã giảm giá sai hoặc đã hết hạn</p></span>}
+            {this.state.showSuccess && <span><p style={{ color: 'green' }}>Áp dụng mã giảm giá thành công!</p></span>}
             <hr/>
             <h3 className="total-price">
               Thành tiền: {this.props.orderInfo.order_items.reduce((acc, orderItem) => acc + this.getPrice(orderItem), 0)}

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ordersUrl, shippingFeeUrl } from '../../config/api';
+import { ordersUrl, shippingFeeUrl, checkCouponUrl } from '../../config/api';
 
 const OrderService = {
   postOrder(orderInfo) {
@@ -13,6 +13,12 @@ const OrderService = {
     return axios({
       method: 'get',
       url: shippingFeeUrl(lat, lng),
+    }).then(res => res);
+  },
+  checkCoupon(code) {
+    return axios({
+      method: 'get',
+      url: checkCouponUrl(code),
     }).then(res => res);
   },
 };
