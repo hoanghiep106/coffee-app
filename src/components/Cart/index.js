@@ -53,9 +53,9 @@ class Cart extends React.Component {
 
   handleCouponCheck = () => {
     OrderService.checkCoupon(this.state.code).then(res => {
-      if (res.data.code && res.data.status === 1) {
+      if (res.data.coupons && res.data.coupons.length > 0 && res.data.coupons[0].status === 1) {
         this.setState({ 
-          discountPercentage: res.data.percentage / 100,
+          discountPercentage: res.data.coupons[0].percentage / 100,
           showError: false,
           showSuccess: true,
         });
